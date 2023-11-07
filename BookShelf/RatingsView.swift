@@ -103,7 +103,7 @@ extension View {
         
         var body: some View {
             RatingsView(
-                maxRating: 5,
+                maxRating:5,
                 currentRating: $currentRating,
                 width: 30,
                 color: .red,

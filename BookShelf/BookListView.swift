@@ -16,9 +16,16 @@ struct BookListView: View {
     var body: some View {
         NavigationStack {
             Group {
+               
                 if books.isEmpty {
-                    ContentUnavailableView("Enter your firsst book.",
-                                           systemImage: "book.fill")
+                    VStack{
+                        ContentUnavailableView("Enter your firsst book.",
+                                               systemImage: "book.fill")
+                        Button(action: {createNewBook = true }, label: {
+                            Text("Add a book")
+                        })
+                        Spacer()
+                    }
                 } else {
                     
                     List {
@@ -82,7 +89,9 @@ struct BookListView: View {
 
 
 #Preview {
-    BookListView()
-        .modelContainer(for: Book.self, inMemory: true)
+    let preview = Preview(Book.self)
+    preview.addExamples(Book.sampleBooks)
+    return BookListView()
+        .modelContainer(preview.container)
     
 }
